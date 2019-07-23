@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block contents %}
+
+{% for post in posts_show.all %}
+<div class="post">
+    <h1>{{post.title}}</h1>
+    <p>{{post.summary}}</p>
+    <p style="text-align:right">{{post.pub_date}}</p>
+    <p style="text-align:right">
+    <a  href="{% url 'detail' post.id %}" >...more</a>
+    <a href="{% url 'updatemodify' post.id %}"style="text-align:right">수정하기</a>
+    {% if post.author == User %}
+        <a href="{% url 'delete' post.id %}"style="text-align:right">삭제하기</a>
+    {% endif %}
+    </p>
+</div>
+{% endfor%}
+
+{% endblock %}

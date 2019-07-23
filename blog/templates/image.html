@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block contents %}
+
+{% load staticfiles %}
+
+{% for x in imgclass.all %}
+<div class = "post">
+    <h1>{{ x.title }}</h1>
+    <img src = "{{ x.image.url }}" height="400">
+    <p>{{ x.description }}</p>
+</div>
+{% endfor %}
+
+{% endblock %}

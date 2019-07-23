@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block contents %}
+<form>
+{% csrf_token %}
+<h1>자세한 본문 내용</h1>
+<br><br>
+<h1> 제목 : {{post.title}} </h1>
+<p> 작성 날짜 : {{post.pub_date}} </p>
+<p> 자세한 본문 : {{post.content}} </p>
+    {% if post.author == user %}
+        <a href="{% url 'delete' post.id %}" style="text-align:right">삭제하기</a>
+    {% endif %}
+    <hr>
+{% for comment in post.comments.all %}
+<div class="comment">
+    <div class="date">{{ comment.comment_date }}</div>
+    <p>{{ comment.comment_contents }}</p>
+</div>
+{% empty %}
+<p>댓글이 아직 없습니다.</p>
+{% endfor %}
+<hr>
+</form>
+<form action="{% url 'comment_write' post_id=post.id %}" method = "POST">
+    {% csrf_token %}
+    <input type="text" name="content" placeholder="Write your comments">
+    <input type="submit" value="Write" />
+</form>
+{% endblock %}

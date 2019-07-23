@@ -1,0 +1,117 @@
+<head>
+
+<style>
+@font-face { font-family: 'TmonMonsori'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/TmonMonsori.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGR'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGR.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGB'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGB.woff') format('woff'); font-weight: normal; font-style: normal; }
+    body {
+        background:#F5EFFB;
+        display: flex;
+        flex-direction: column;
+    }
+    a{
+        font-family:'BBTreeGR';
+
+    }
+    div {
+        background-color: #FBEFF2;
+        border-radius : 10px;
+        border: 5px solid #FFFFFF;
+    }
+
+    #header {
+        text-align:center;
+        color:#1B0A2A;
+        font-family:'TmonMonsori';
+        width: 95%;
+        height: 80px;
+        padding:10px;
+    }
+    #sub{
+        flex-wrap: wrap;
+
+    }
+    #content {
+        display: flex;
+        flex-direction: row-reverse;
+        width: 97%;
+        justify-content:space-between;
+    }
+
+    #menu {
+        display: flex;
+        flex-direction: column;
+        width: 28%
+    }
+    section{
+        width:70%;
+        height:100%;
+        font-family: 'BBTreeGB';
+        text-align:left;
+    }
+    article{
+        width:38%;
+        height:100%;
+        background-color: #FBEFF2;
+        border-radius : 10px;
+        border: 5px solid #FFFFFF;
+        display: flex;
+    }
+
+    #footer {
+        width: 97%;
+        height: 80px;
+        text-align:center;
+    }
+
+    .margin {
+        margin: 1%;
+    }
+
+    .post {
+        margin: 1%;
+    }
+    a:hover{
+        background-color:blue;
+        color:white;
+        font-size:15px;
+    }
+</style>
+</head>
+<body>
+
+    <div id="header" class="margin">
+        <h1>학교생활 도움 사이트 </h1>
+    </div>
+    {% if user.is_authenticated %}
+        환영합니다. {{user.username}} 님!
+        <a href="{% url 'newpost' %}">글쓰기</a>
+        <a href="{% url 'logout' %}">Logout</a>
+
+    {% else %}
+        <a href="{% url 'signup' %}">Signup</a>
+        <a href="{% url 'login' %}">Login</a>
+    
+    {% endif %}
+
+    <div id="content">
+        <section>
+            {% block contents %}
+            {% endblock %}
+            
+        </section>
+        <article>
+        <ul>
+            <li><a href="{% url 'newpost' %}">유용한 정보 공유하기</a></li>
+            <li><a href="{% url 'imageview' %}">유용한 사이트</a></li>
+
+        </ul>
+
+
+        </article>
+        </div>
+    <div id="footer" class="margin">
+        <h6>likelion. 만든이 조찬기 백지연 이희진</h6>
+        <h6></h6>
+    </div>
+</body>

@@ -1,0 +1,19 @@
+<head>
+<style>
+body{
+background:#F5EFFB;
+}
+</style>
+</head>
+<body>
+{% load staticfiles%}  
+
+<a href="https://eruri.kangwon.ac.kr/login.php" target=_blank>이루리 홈페이지</a>
+<a href="https://www.codecademy.com/"target="_blank">코드카데미</a>
+<a href="https://class.likelion.org/board/notices/" target=_blank>likelion홈페이지</a>
+{% for x in imgclass.all %}
+    <h1>{{ x.title}}</h1>
+    <img src="{{ x.image.url}}" height=400>
+    <p>{{x.description}}</p>
+{% endfor %}
+</body>
